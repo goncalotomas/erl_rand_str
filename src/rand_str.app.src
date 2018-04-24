@@ -1,6 +1,6 @@
 {application, rand_str,
- [{description, "An OTP library"},
-  {vsn, "0.1.0"},
+ [{description, "OTP library for generating random strings"},
+  {vsn, "1.0.0"},
   {registered, []},
   {applications,
    [kernel,
@@ -8,8 +8,7 @@
    ]},
   {env,[]},
   {modules, []},
-
-  {maintainers, []},
+  {maintainers, ["Goncalo Tomas"]},
   {licenses, ["Apache 2.0"]},
-  {links, []}
+  {links,[{"Github","https://github.com/ClicaAi/rand_str"}]}
  ]}.
