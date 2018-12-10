@@ -15,10 +15,17 @@ get(Length) ->
     get(Length, ?ALPHABET).
 
 get(Length, Alphabet) when length(Alphabet) > 0 ->
-    L = length(Alphabet),
-    lists:foldl(fun(_, Acc) ->
-                    [lists:nth(rand:uniform(L), Alphabet)] ++ Acc
-                end, [], lists:seq(1, Length)).
+    Arr = array:from_list(Alphabet),
+    L = array:size(Arr),
+    foldl_len(fun(Acc) ->
+                    [array:get(rand:uniform(L)-1, Arr) | Acc]
+                end, [], Length).
+
+foldl_len(_F, Accum, 0) ->
+    Accum;
+
+foldl_len(F, Accum, N) ->
+    foldl_len(F, F(Accum), N-1).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                     Eunit Tests                                                    %%
